@@ -1,0 +1,29 @@
+'''
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+'''
+
+import sys
+from math import sqrt
+
+def multiples(prime, cap):
+    return [prime * i for i in range(cap // prime)]
+
+def is_coprime(candidate, primes):
+    for prime in primes:
+        if candidate % prime == 0:
+            return False
+    return True
+
+if __name__ == '__main__':
+    cap = int(sys.argv[1])
+    primes = []
+    candidate = 2
+    while candidate < cap:
+        if is_coprime(candidate, primes):
+            primes.append(candidate)
+            while cap % candidate == 0:
+                cap = cap // candidate
+                print(str(cap) + ', ' + str(candidate))
+        candidate += 1
