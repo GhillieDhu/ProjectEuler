@@ -24,20 +24,43 @@ from math import sqrt
 def triangle_number(sequence):
     return [1] if sequence == [] else sequence + [(len(sequence)+1) + sequence[-1]]
 
-def factors(integer):
-    count = 0
-    for i in range(1, int(sqrt(integer))+1):
-        if i == sqrt(integer):
+def is_coprime(candidate, primes):
+    for prime in primes:
+        if candidate % prime == 0:
+            return False
+    return True
+
+def prime(n, primes):
+    if primes == []:
+        primes = [2]
+    candidate = max(primes) + 1 
+    while max(primes) < n:
+        if is_coprime(candidate, primes):
+            primes.append(candidate)
+        candidate += 1
+    return primes
+
+def factors(integer, primes):
+    counts = {}
+    for i in primes:
+        count = 0
+        while integer % i == 0:
             count += 1
-        elif integer/i % 1 == 0:
-            count += 2
-    return count        
+            integer //= i
+        if count > 0:
+            counts[i] = count
+    factors = 1
+    for i in counts:
+        factors *= counts[i]+1
+    return factors
 
 if __name__ == '__main__':
+    primes = []
     triangle_numbers = []
     tri_facts = 0
     while tri_facts < int(sys.argv[1]):
         triangle_numbers = triangle_number(triangle_numbers)
         tri = triangle_numbers[-1]
-        tri_facts = factors(tri)
+        primes = prime(tri, primes)
+        tri_facts = factors(tri, primes)
         print((tri, tri_facts))
