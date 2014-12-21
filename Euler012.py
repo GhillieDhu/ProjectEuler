@@ -49,6 +49,8 @@ def factors(integer, primes):
             integer //= i
         if count > 0:
             counts[i] = count
+    if integer > 1:
+        counts[integer] = 1
     factors = 1
     for i in counts:
         factors *= counts[i]+1
@@ -61,6 +63,6 @@ if __name__ == '__main__':
     while tri_facts < int(sys.argv[1]):
         triangle_numbers = triangle_number(triangle_numbers)
         tri = triangle_numbers[-1]
-        primes = prime(tri, primes)
+        primes = prime(int(sqrt(tri)), primes)
         tri_facts = factors(tri, primes)
         print((tri, tri_facts))
