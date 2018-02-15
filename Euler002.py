@@ -12,5 +12,4 @@ if __name__ == '__main__':
     fib = [1, 2]
     while fib[-2] + fib[-1] <= 4000000:
         fib.append(fib[-2] + fib[-1])
-    fub = [i if i % 2 == 0 else 0 for i in fib]
-    print(sum(fub))
+    print(sum([i for i in fib if i % 2 == 0]))

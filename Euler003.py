@@ -11,13 +11,11 @@ def multiples(prime, cap):
     return [prime * i for i in range(cap // prime)]
 
 def is_coprime(candidate, primes):
-    for prime in primes:
-        if candidate % prime == 0:
-            return False
-    return True
+    return all([candidate % prime != 0 for prime in primes])
 
 if __name__ == '__main__':
-    cap = int(sys.argv[1])
+    # cap = int(sys.argv[1])
+    cap = 600851475143
     primes = []
     candidate = 2
     while candidate < cap:
