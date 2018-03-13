@@ -13,16 +13,24 @@ def primes() -> Generator[int, None, None]:
         ps.append(n)
 
 
-def primesTo(n: int) -> List[int]:
+def primes_to(n: int) -> List[int]:
     return list(takewhile(lambda x: x <= n, primes()))
 
 
-if __name__ == '__main__':
-    cap = 600851475143
+def prime_factors(cap: int) -> List[int]:
     candidates = primes()
     candidate = next(candidates)
+    pfs: List[int] = []
     while candidate < cap:
         while cap % candidate == 0:
             cap = cap // candidate
-            print(str(cap) + ', ' + str(candidate))
+            pfs.append(candidate)
         candidate = next(candidates)
+    if cap > 1:
+        pfs.append(cap)
+    return pfs
+
+if __name__ == '__main__':
+    # cap = 600851475143
+    for i in range(1000):
+        print(str(i) + ": " + str(prime_factors(i)))
