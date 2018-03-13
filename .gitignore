@@ -18,11 +18,11 @@ $RECYCLE.BIN/
 *.lnk
 
 # Testing & Typing
-.hypothesis/*
-.mypy_cache/*
-.pytest_cache/*
+**/.hypothesis/**
+**/.mypy_cache/**
+**/.pytest_cache/**
 *.pyc
-.vscode/*
+**/.vscode/**
 
 # =========================
 # Operating System Files
