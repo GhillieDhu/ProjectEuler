@@ -10,11 +10,11 @@ def series(seed1: int, seed2: int) -> Generator[int, None, None]:
 
 
 def firstN(seed1: int, seed2: int, n: int):
-    return(islice(series(seed1, seed2), n))
+    return list(islice(series(seed1, seed2), n))
 
 
 def allBelow(seed1: int, seed2: int, limit: int):
-    return takewhile(lambda x: x <= limit, series(seed1, seed2))
+    return list(takewhile(lambda x: x <= limit, series(seed1, seed2)))
 
 
 if __name__ == '__main__':
