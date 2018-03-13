@@ -30,7 +30,6 @@ def prime_factors(cap: int) -> List[int]:
         pfs.append(cap)
     return pfs
 
+
 if __name__ == '__main__':
-    # cap = 600851475143
-    for i in range(1000):
-        print(str(i) + ": " + str(prime_factors(i)))
+    print(prime_factors(600851475143))
