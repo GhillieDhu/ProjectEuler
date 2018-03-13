@@ -1,4 +1,4 @@
-from Euler0001.fizzbuzz import sum_of_multiples
+from .fizzbuzz import sum_of_multiples
 from hypothesis import given
 from hypothesis.strategies import integers
 

@@ -1,4 +1,4 @@
-from Euler0003.primes import prime_factors
+from .primes import prime_factors
 from hypothesis import given
 from hypothesis.strategies import integers
 from functools import reduce

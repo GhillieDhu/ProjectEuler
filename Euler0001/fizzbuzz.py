@@ -1,5 +1,4 @@
 from typing import Sequence
-import typing
 
 
 def sum_of_multiples(multiplicands: Sequence[int], cap: int):

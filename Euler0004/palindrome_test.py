@@ -1,4 +1,4 @@
-from Euler0004.palindrome import max_palindrome, is_palindrome
+from .palindrome import max_palindrome, is_palindrome
 from hypothesis import given
 from hypothesis.strategies import characters
 

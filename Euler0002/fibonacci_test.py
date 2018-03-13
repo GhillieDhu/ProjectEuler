@@ -1,4 +1,4 @@
-from Euler0002.fibonacci import firstN
+from .fibonacci import firstN
 from hypothesis import given
 from hypothesis.strategies import integers
 

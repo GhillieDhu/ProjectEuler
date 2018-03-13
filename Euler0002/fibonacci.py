@@ -1,6 +1,5 @@
 from itertools import takewhile, islice
 from typing import Generator
-import typing
 
 
 def series(seed1: int, seed2: int) -> Generator[int, None, None]:

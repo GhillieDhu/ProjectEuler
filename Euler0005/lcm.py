@@ -1,10 +1,14 @@
 from typing import Sequence, List
 from Euler0003.primes import prime_factors
+from collections import Counter
+from functools import reduce
+from operator import mul
 
 
 def lcm(support: Sequence[int]) -> int:
-    print(support)
-    return 0
+    factors: List[Counter] = [Counter(prime_factors(x)) for x in support]
+    common_factors: Counter = reduce(lambda a, b: a | b, factors)
+    return reduce(mul, [k**common_factors[k] for k in common_factors.keys()])
 
 
 if __name__ == '__main__':
@@ -15,15 +19,4 @@ if __name__ == '__main__':
     What is the smallest positive number that is evenly divisible by all of
     the numbers from 1 to 20?
     '''
-    support = 0
-    smallest_multiple = 1
-    factors: List[int] = []
-    for base in range(1, support + 1):
-        new_factor = base
-        for factor in factors:
-            if new_factor % factor == 0:
-                new_factor //= factor
-        if new_factor > 1:
-            smallest_multiple *= new_factor
-            factors.append(new_factor)
-    print(smallest_multiple)
+    print(lcm(range(1, 21)))
