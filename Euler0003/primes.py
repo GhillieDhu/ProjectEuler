@@ -17,17 +17,17 @@ def primes_to(n: int) -> List[int]:
     return list(takewhile(lambda x: x <= n, primes()))
 
 
-def prime_factors(cap: int) -> List[int]:
-    candidates = primes()
-    candidate = next(candidates)
+def prime_factors(n: int) -> List[int]:
+    ps = primes()
+    p = next(ps)
     pfs: List[int] = []
-    while candidate < cap:
-        while cap % candidate == 0:
-            cap = cap // candidate
-            pfs.append(candidate)
-        candidate = next(candidates)
-    if cap > 1:
-        pfs.append(cap)
+    while p < n:
+        while n % p == 0:
+            n = n // p
+            pfs.append(p)
+        p = next(ps)
+    if n > 1:
+        pfs.append(n)
     return pfs
 
 
