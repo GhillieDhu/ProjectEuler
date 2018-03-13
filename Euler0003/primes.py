@@ -1,4 +1,4 @@
-from itertools import takewhile, count, dropwhile
+from itertools import takewhile, count
 from typing import Generator, List
 
 
@@ -7,8 +7,7 @@ def primes() -> Generator[int, None, None]:
     for p in ps:
         yield p
     while True:
-        n = next(dropwhile(lambda x:
-                           any(x % p == 0 for p in ps), count(ps[-1], 2)))
+        n = next(x for x in count(ps[-1], 2) if all(x % p != 0 for p in ps))
         yield n
         ps.append(n)
 
