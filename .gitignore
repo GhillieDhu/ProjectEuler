@@ -17,6 +17,13 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Testing & Typing
+.hypothesis/*
+.mypy_cache/*
+.pytest_cache/*
+__pycache__/*
+.vscode/*
+
 # =========================
 # Operating System Files
 # =========================
