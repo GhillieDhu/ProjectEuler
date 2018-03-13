@@ -1,5 +1,5 @@
 from typing import Sequence, List
-from Euler0003.primes import prime_factors
+# from Euler0003.primes import prime_factors
 from collections import Counter
 from functools import reduce
 from operator import mul
@@ -12,6 +12,10 @@ def lcm(support: Sequence[int]) -> int:
 
 
 if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.path.dirname(os.pardir))
+    from Euler0003.primes import prime_factors
     '''
     2520 is the smallest number that can be divided by each of the numbers
     from 1 to 10 without any remainder.
@@ -20,3 +24,5 @@ if __name__ == '__main__':
     the numbers from 1 to 20?
     '''
     print(lcm(range(1, 21)))
+else:
+    from Euler0003.primes import prime_factors

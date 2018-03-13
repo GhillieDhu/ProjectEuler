@@ -10,5 +10,5 @@ def timed_execution(approaches: Sequence[str], repetitions: int):
                   "import fizzbuzz", number=repetitions) / repetitions))
 
 
-for i in range(6):
+for i in range(5):
     timed_execution(["sum_of_multiples"], 10**i)
