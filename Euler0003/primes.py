@@ -1,4 +1,4 @@
-from itertools import takewhile, count
+from itertools import count
 from typing import Generator, List
 
 
@@ -10,10 +10,6 @@ def primes() -> Generator[int, None, None]:
         n = next(x for x in count(ps[-1], 2) if all(x % p != 0 for p in ps))
         yield n
         ps.append(n)
-
-
-def primes_to(n: int) -> List[int]:
-    return list(takewhile(lambda x: x <= n, primes()))
 
 
 def prime_factors(n: int) -> List[int]:
