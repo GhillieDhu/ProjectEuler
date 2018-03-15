@@ -1,11 +1,11 @@
 from functools import reduce
+from operator import add
 from typing import Set
 
 
 def primes_to(n: int) -> Set[int]:
     xs = range(n, 1, -1)
-    cs: Set = reduce(lambda a, b: a | b,
-                     [set(range(x**2, n + 1, x)) for x in xs])
+    cs: Set = set(reduce(add, [list(range(x**2, n + 1, x)) for x in xs]))
     return set(xs) - cs
 
 
