@@ -13,7 +13,7 @@ def test_single(x: int):
     assert lcm([x]) == x
 
 
-@given(integers(2), integers(1, 5))
+@given(integers(2, 10000), integers(1, 5))
 def test_duplication_irrelevant(x: int, n: int):
     assert lcm([x] * n) == x
 
