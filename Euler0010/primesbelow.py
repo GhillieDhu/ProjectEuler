@@ -1,11 +1,12 @@
-from itertools import takewhile
-from typing import List
+from functools import reduce
+from typing import Set
 
 
-def primes_to(n: int):
-    from Euler0003.primes import primes
-    ps = primes()
-    return takewhile(lambda x: x <= n, ps)
+def primes_to(n: int) -> Set[int]:
+    xs = range(n, 1, -1)
+    cs: Set = reduce(lambda a, b: a | b,
+                     [set(range(x**2, n + 1, x)) for x in xs])
+    return set(xs) - cs
 
 
 def prime_sum(n: int) -> int:
