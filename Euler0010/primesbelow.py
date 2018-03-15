@@ -3,7 +3,7 @@ from typing import List
 
 def primes_to(n: int) -> List[int]:
     xs = range(n, 1, -1)
-    cs = (c for x in xs for c in range(x**2, n + 1, x))
+    cs = set(c for x in xs for c in range(x**2, n + 1, x))
     return [p for p in xs if p not in cs]
 
 
