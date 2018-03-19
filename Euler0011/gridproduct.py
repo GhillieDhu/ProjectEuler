@@ -8,7 +8,7 @@ def grid_product(grid, xys: Iterator[Tuple[int, int]]) -> int:
         return product([grid[x, y] for x, y in xys])
     except IndexError:
         import sys
-        return -sys.maxsize
+        return -sys.maxsize - 1
 
 
 def read_grid() -> np.array:
