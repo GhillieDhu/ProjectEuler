@@ -1,14 +1,13 @@
 import numpy as np
-from typing import List, Iterator, Tuple
+from typing import List, Iterator, Tuple, Optional
 
 
-def grid_product(grid, xys: Iterator[Tuple[int, int]]) -> int:
+def grid_product(grid, xys: Iterator[Tuple[int, int]]) -> Optional[int]:
     from Euler0008.product import product
     try:
         return product([grid[x, y] for x, y in xys])
     except IndexError:
-        import sys
-        return -sys.maxsize - 1
+        return None
 
 
 def read_grid() -> np.array:
@@ -27,7 +26,7 @@ def max_dir_prod(grid, length: int, direction: Tuple[int, int]) -> int:
     xss = [[x + n * d_x for n in range(length)] for x in range(x_max)]
     yss = [[y + n * d_y for n in range(length)] for y in range(y_max)]
     xyss = [zip(xs, ys) for xs in xss for ys in yss]
-    return max([grid_product(grid, xys) for xys in xyss])
+    return max(filter(None, [grid_product(grid, xys) for xys in xyss]))
 
 
 def max_grid_product(grid, length: int) -> int:
