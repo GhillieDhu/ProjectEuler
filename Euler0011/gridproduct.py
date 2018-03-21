@@ -10,7 +10,7 @@ def grid_product(grid, xys: Iterator[Tuple[int, int]]) -> Optional[int]:
         return None
 
 
-def read_grid() -> np.array:
+def read_grid() -> np.ndarray:
     import os.path
     scriptpath = os.path.dirname(__file__)
     with open(os.path.join(scriptpath, 'grid.txt')) as grid_file:
@@ -20,9 +20,9 @@ def read_grid() -> np.array:
         return np.array(grid_lists, dtype=int)
 
 
-def max_dir_prod(grid, length: int, direction: Tuple[int, int]) -> int:
+def max_dir_prod(grid, length: int, d_xy: Tuple[int, int]) -> Optional[int]:
     x_max, y_max = grid.shape
-    d_x, d_y = direction
+    d_x, d_y = d_xy
     xss = [[x + n * d_x for n in range(length)] for x in range(x_max)]
     yss = [[y + n * d_y for n in range(length)] for y in range(y_max)]
     xyss = [zip(xs, ys) for xs in xss for ys in yss]
@@ -30,9 +30,9 @@ def max_dir_prod(grid, length: int, direction: Tuple[int, int]) -> int:
 
 
 def max_grid_product(grid, length: int) -> int:
-    mdps = [max_dir_prod(grid, length, direction) for direction in
-            [(1, 0), (1, 1), (1, -1), (0, 1)]]
-    return max(mdps)
+    mdps_max = max([max_dir_prod(grid, length, d_xy) for d_xy in
+                    [(1, 0), (1, 1), (1, -1), (0, 1)]])
+    return mdps_max if mdps_max else 1
 
 
 if __name__ == '__main__':
