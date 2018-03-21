@@ -6,9 +6,10 @@ from operator import mul
 
 def lcm(support: Sequence[int]) -> int:
     from Euler0003.primes import prime_factors
+    from Euler0008.product import product
     factors: List[Counter] = [Counter(prime_factors(x)) for x in support]
     common_factors: Counter = reduce(lambda a, b: a | b, factors)
-    return reduce(mul, [k**common_factors[k] for k in common_factors.keys()])
+    return product([k**common_factors[k] for k in common_factors.keys()])
 
 
 if __name__ == '__main__':
