@@ -1,4 +1,4 @@
-from typing import Generator
+from typing import Generator, List
 from collections import Counter
 from itertools import dropwhile, count, islice
 
@@ -12,14 +12,17 @@ def triangle_nums() -> Generator[int, None, None]:
         yield triangle_num(n)
 
 
-def factor_count(n: int) -> int:
-    from Euler0003.primes import prime_factors
-    from Euler0008.product import product
-    counts = Counter(prime_factors(n))
-    return product([1 + counts[k] for k in counts.keys()])
-
-
 def min_tri_with_over_n_facts(n: int) -> int:
+    ps: List[int] = []
+
+    def factor_count(n: int) -> int:
+        from Euler0003.primes import prime_factors
+        from Euler0008.product import product
+        nonlocal ps
+        pfs = prime_factors(n, known_ps=ps)
+        ps = sorted(list(set(ps).union(set(pfs))))
+        counts = Counter(pfs)
+        return product([1 + counts[k] for k in counts.keys()])
     return list(islice(dropwhile(lambda i: factor_count(i) <= n,
                                  triangle_nums()), 1))[0]
 

@@ -1,9 +1,8 @@
 from itertools import count
-from typing import Generator, List
+from typing import Generator, List, Optional
 
 
-def primes() -> Generator[int, None, None]:
-    ps = [2, 3]
+def primes(ps: List[int] = [2, 3]) -> Generator[int, None, None]:
     for p in ps:
         yield p
     while True:
@@ -12,8 +11,8 @@ def primes() -> Generator[int, None, None]:
         ps.append(n)
 
 
-def prime_factors(n: int) -> List[int]:
-    ps = primes()
+def prime_factors(n: int, known_ps: Optional[List[int]] = None) -> List[int]:
+    ps = primes(known_ps) if known_ps else primes()
     p = next(ps)
     pfs: List[int] = []
     while p < n:

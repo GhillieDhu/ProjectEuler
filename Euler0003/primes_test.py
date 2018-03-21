@@ -11,4 +11,5 @@ def test_example():
 
 @given(integers(1))
 def test_factor_product(n: int):
-    assert n == reduce(mul, prime_factors(n), 1)
+    from Euler0008.product import product
+    assert n == product(prime_factors(n))
