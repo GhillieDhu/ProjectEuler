@@ -13,16 +13,17 @@ def triangle_nums() -> Generator[int, None, None]:
 
 
 def min_tri_with_over_n_facts(n: int) -> int:
+    from Euler0003.primes import prime_factors
+    from Euler0008.product import product
     ps: List[int] = []
 
     def factor_count(n: int) -> int:
-        from Euler0003.primes import prime_factors
-        from Euler0008.product import product
         nonlocal ps
         pfs = prime_factors(n, known_ps=ps)
         ps = sorted(list(set(ps).union(set(pfs))))
         counts = Counter(pfs)
         return product([1 + counts[k] for k in counts.keys()])
+
     return list(islice(dropwhile(lambda i: factor_count(i) <= n,
                                  triangle_nums()), 1))[0]
 
