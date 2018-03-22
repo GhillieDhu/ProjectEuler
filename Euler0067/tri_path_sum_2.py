@@ -1,17 +1,11 @@
-def roll_up(triangle):
-    if len(triangle) == 1:
-        return triangle[0][0]
-    else:
-        for i in range(len(triangle[len(triangle) - 2])):
-            larger = max(triangle[len(triangle) - 1][i], triangle[len(triangle) - 1][i + 1])
-            triangle[len(triangle) - 2][i] += larger
-        return roll_up(triangle[:-1])
-
-
 if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.path.dirname(os.pardir))
+    from Euler0018.tri_path_sum import read_tri, roll_up
     '''
-    By starting at the top of the triangle below and moving to adjacent
-    numbers on the row below, the maximum total from top to bottom is 23.
+    By starting at the top of the triangle below and moving to
+    adjacent from top to bottom is 23.
 
     3
     7 4
@@ -30,4 +24,8 @@ if __name__ == '__main__':
     would take over twenty billion years to check them all. There is an
     efficient algorithm to solve it. ;o)
     '''
+    import os.path
+    scriptpath = os.path.dirname(__file__)
+    tri_file = os.path.join(scriptpath, 'p067_triangle.txt')
+    prod = read_tri(tri_file)
     print(roll_up(prod))

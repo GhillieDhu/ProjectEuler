@@ -1,27 +1,27 @@
 from typing import List, Iterator, Tuple, Optional
 
 
-def read_tri(file_name: str) -> List[List[int]]:
-    import os.path
-    scriptpath = os.path.dirname(__file__)
-    with open(os.path.join(scriptpath, file_name)) as tri_file:
+def read_tri(tri_file_path) -> List[List[int]]:
+    with open(tri_file_path) as tri_file:
         tri_lines: List[str] = tri_file.readlines()
         tri_lists: List[List[str]] = [tri_line.split(' ') for tri_line
                                       in tri_lines]
         return [[int(s) for s in line] for line in tri_lists]
 
 
-def roll_up(tri):
-    if len(tri) == 1:
-        return tri[0][0]
-    else:
-        for i in range(len(tri[len(tri) - 2])):
-            larger = max(tri[len(tri) - 1][i], tri[len(tri) - 1][i + 1])
-            tri[len(tri) - 2][i] += larger
-        return roll_up(tri[:-1])
+def roll_up(tri: List[List[int]]) -> int:
+    from Euler0014.collatz import pairwise
+    plinko = [0 for i in tri[-1]]
+    for row in tri[::-1]:
+        rolling = [p + q for p, q in zip(plinko, row)]
+        plinko = [max(a, b) for (a, b) in pairwise(rolling)]
+    return rolling[0]
 
 
 if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.path.dirname(os.pardir))
     '''
     By starting at the top of the triangle below and moving to adjacent
     numbers on the row below, the maximum total from top to bottom is 23.
@@ -56,5 +56,8 @@ if __name__ == '__main__':
     triangle containing one-hundred rows; it cannot be solved by brute force,
     and requires a clever method! ;o)
     '''
-    prod = read_tri('problem_tri.txt')
+    import os.path
+    scriptpath = os.path.dirname(__file__)
+    tri_file = os.path.join(scriptpath, 'problem_tri.txt')
+    prod = read_tri(tri_file)
     print(roll_up(prod))
