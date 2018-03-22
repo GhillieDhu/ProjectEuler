@@ -19,7 +19,7 @@ def min_tri_with_over_n_facts(n: int) -> int:
 
     def factor_count(n: int) -> int:
         nonlocal ps
-        pfs = prime_factors(n, known_ps=ps)
+        pfs = prime_factors(n, ps)
         ps = sorted(list(set(ps).union(set(pfs))))
         counts = Counter(pfs)
         return product([1 + counts[k] for k in counts.keys()])
